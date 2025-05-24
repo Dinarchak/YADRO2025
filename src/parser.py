@@ -9,7 +9,8 @@ def parse_input_xml(path: str) -> tuple:
         path (str): путь к файлу
 
     Returns:
-        tuple: словарь(ключ - название объекта, значение - Object), корневой объект(Object)
+        tuple: словарь(ключ - название объекта, значение - Object),
+        корневой объект(Object)
     """
 
     root_cls_obj = None
@@ -18,7 +19,7 @@ def parse_input_xml(path: str) -> tuple:
     config = ET.parse(path)
     root = config.getroot()
 
-    for cls_conf in root.findall('Class'): # обработать все теги Class
+    for cls_conf in root.findall('Class'):  # обработать все теги Class
 
         attrs_list = []
         for attr in cls_conf:
@@ -26,20 +27,21 @@ def parse_input_xml(path: str) -> tuple:
 
         cls_obj = Object(
             name=cls_conf.attrib['name'],
-            isRoot=(cls_conf.attrib['isRoot']=='true'),
+            isRoot=(cls_conf.attrib['isRoot'] == 'true'),
             documentation=cls_conf.attrib['documentation'],
             attrs=attrs_list
         )
-        
 
-        if cls_obj.isRoot: root_cls_obj = cls_obj
+        if cls_obj.isRoot:
+            root_cls_obj = cls_obj
         classes[cls_obj.name] = cls_obj
 
-    for aggregation in root.findall('Aggregation'): # обработать все теги Aggreagation
+    # обработать все теги Aggreagation
+    for aggregation in root.findall('Aggregation'):
         source_obj = classes[aggregation.attrib['source']]
         sourceMultiplicity = aggregation.attrib['sourceMultiplicity'].split('.')
 
-        if len(sourceMultiplicity) == 1:    
+        if len(sourceMultiplicity) == 1:
             source_obj.max = source_obj.min = int(sourceMultiplicity[0])
         else:
             source_obj.min = int(sourceMultiplicity[0])

@@ -1,6 +1,6 @@
 from parser import parse_input_xml
 from builder import ConfigBuilder
-    
+
 
 def run():
     classes, root_cls_obj = parse_input_xml('./input/test_input.xml')

@@ -3,7 +3,7 @@ from models import Object
 import xml.dom.minidom
 
 
-def create_xml_tree(root_xml: ET.Element, children:list[Object]):
+def create_xml_tree(root_xml: ET.Element, children: list[Object]):
     """Создает представление xml дерева
 
     Args:

@@ -30,8 +30,14 @@ class Attribute:
             'type': self.type
         }
 
+
 class Object:
-    def __init__(self, name: str, isRoot: bool, documentation: str, attrs: list[Attribute]):
+    def __init__(
+            self,
+            name: str,
+            isRoot: bool,
+            documentation: str,
+            attrs: list[Attribute]):
         """
         Args:
             name (str): имя класса
@@ -47,8 +53,8 @@ class Object:
         self.name: str = name
         self.isRoot: bool = isRoot
         self.documentation: str = documentation
-        self.max: int | None = None # максимально значение исходящей связи
-        self.min: int | None = None # минимальное значение исходящей связи
+        self.max: int | None = None  # максимально значение исходящей связи
+        self.min: int | None = None  # минимальное значение исходящей связи
 
     def create_xml_element(self, parent: ET.Element) -> ET.Element:
         """Создает xlm элемент соответсвутющий атрибуту
@@ -61,15 +67,17 @@ class Object:
             ET.Element: xml-представление класса
         """
         if self.isRoot:
-            elem = ET.Element(self.name) # создать как корень дерева
+            # создать как корень дерева
+            elem = ET.Element(self.name)
         else:
-            elem = ET.SubElement(parent, self.name) # создать как ребенок xml-элемента
+            # создать как ребенок xml-элемента
+            elem = ET.SubElement(parent, self.name)
 
         for attr in self.attrs:
             attr.create_xml_element(elem)
 
         return elem
-    
+
     def to_dict(self) -> dict:
         """Конверитация в словарь для записи в meta.json
 
@@ -82,8 +90,10 @@ class Object:
             'isRoot': self.isRoot,
             'max': self.max,
             'min': self.min,
-            'parameters': ([attr.to_dict() for attr in self.attrs]
-            + [sub_class.to_dict_as_param() for sub_class in self.children])
+            'parameters': (
+                [attr.to_dict() for attr in self.attrs] +
+                [sub_class.to_dict_as_param() for sub_class in self.children]
+            )
         }
 
         if self.max is None:
