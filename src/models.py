@@ -75,15 +75,21 @@ class Object:
 
         Returns: dict
         """
-        return {
+
+        d = {
             'class': self.name,
             'documentation': self.documentation,
             'isRoot': self.isRoot,
             'max': self.max,
             'min': self.min,
-            'parameters': ([sub_class.to_dict_as_param() for sub_class in self.children]
-            + [attr.to_dict() for attr in self.attrs])
+            'parameters': ([attr.to_dict() for attr in self.attrs]
+            + [sub_class.to_dict_as_param() for sub_class in self.children])
         }
+
+        if self.max is None:
+            d.pop('max')
+            d.pop('min')
+        return d
 
     def to_dict_as_param(self) -> dict:
         """Конвертация в словарь для записи в meta.json.
