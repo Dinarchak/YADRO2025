@@ -1,10 +1,62 @@
 [
     {
+        "class": "BTS",
+        "documentation": "Base Transmitter Station. This is the only root class",
+        "isRoot": true,
+        "parameters": [
+            {
+                "name": "id",
+                "type": "uint32"
+            },
+            {
+                "name": "name",
+                "type": "string"
+            },
+            {
+                "name": "MGMT",
+                "type": "class"
+            },
+            {
+                "name": "HWE",
+                "type": "class"
+            },
+            {
+                "name": "COMM",
+                "type": "class"
+            }
+        ]
+    },
+    {
+        "class": "MGMT",
+        "documentation": "Management related",
+        "isRoot": false,
+        "max": 1,
+        "min": 1,
+        "parameters": [
+            {
+                "name": "MetricJob",
+                "type": "class"
+            },
+            {
+                "name": "CPLANE",
+                "type": "class"
+            }
+        ]
+    },
+    {
+        "class": "COMM",
+        "documentation": "Communication services",
+        "isRoot": false,
+        "max": 1,
+        "min": 1,
+        "parameters": []
+    },
+    {
         "class": "MetricJob",
         "documentation": "Perfomance metric job",
         "isRoot": false,
-        "max": "100",
-        "min": "0",
+        "max": 100,
+        "min": 0,
         "parameters": [
             {
                 "name": "isFinished",
@@ -20,33 +72,16 @@
         "class": "CPLANE",
         "documentation": "Perfomance metric job",
         "isRoot": false,
-        "max": "1",
-        "min": "0",
+        "max": 1,
+        "min": 0,
         "parameters": []
-    },
-    {
-        "class": "MGMT",
-        "documentation": "Management related",
-        "isRoot": false,
-        "max": "1",
-        "min": "1",
-        "parameters": [
-            {
-                "name": "MetricJob",
-                "type": "class"
-            },
-            {
-                "name": "CPLANE",
-                "type": "class"
-            }
-        ]
     },
     {
         "class": "RU",
         "documentation": "Radio Unit hardware element",
         "isRoot": false,
-        "max": "42",
-        "min": "0",
+        "max": 42,
+        "min": 0,
         "parameters": [
             {
                 "name": "hwRevision",
@@ -70,46 +105,11 @@
         "class": "HWE",
         "documentation": "Hardware equipment",
         "isRoot": false,
-        "max": "1",
-        "min": "1",
+        "max": 1,
+        "min": 1,
         "parameters": [
             {
                 "name": "RU",
-                "type": "class"
-            }
-        ]
-    },
-    {
-        "class": "COMM",
-        "documentation": "Communication services",
-        "isRoot": false,
-        "max": "1",
-        "min": "1",
-        "parameters": []
-    },
-    {
-        "class": "BTS",
-        "documentation": "Base Transmitter Station. This is the only root class",
-        "isRoot": true,
-        "parameters": [
-            {
-                "name": "id",
-                "type": "uint32"
-            },
-            {
-                "name": "name",
-                "type": "string"
-            },
-            {
-                "name": "MGMT",
-                "type": "class"
-            },
-            {
-                "name": "HWE",
-                "type": "class"
-            },
-            {
-                "name": "COMM",
                 "type": "class"
             }
         ]
