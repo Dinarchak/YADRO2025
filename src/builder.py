@@ -44,6 +44,6 @@ class ConfigBuilder:
             path (str): путь к файлу
             classes (dict[str, Object]): словарь классов(ключ - тег класса, значение - экземпляр класса)
         """
-        json_list = [cls_obj.to_dict() for cls_obj in self.classes.values() if not cls_obj.isRoot]
+        json_list = [cls_obj.to_dict() for cls_obj in self.classes.values()]
         with open(self.meta_path, 'w', encoding='utf-8') as f:
             json.dump(json_list, f, indent=4)
